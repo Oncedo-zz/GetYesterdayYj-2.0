@@ -1,0 +1,24 @@
+# 配置文件
+
+# 服务端配置
+server:
+  # 端口设置
+  port: 9201
+
+spring:
+  # 配置应用信息
+  application:
+    # 应用名
+    name: WCF-BMC
+  # 激活的文件
+  profiles:
+    active: dev
+  # swagger适配
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+# 日志配置
+logging:
+  config: classpath:config/logback-spring.xml
+

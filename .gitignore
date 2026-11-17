@@ -1,0 +1,23 @@
+# 构建产物
+target/
+*.jar
+!src/main/resources/libs/*.jar
+
+# IDE
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# 外部配置（含用户可能填入的真实密钥，不入库）
+sites.yml
+
+# 日志与临时
+*.log
+logs/
+*.class
+
+# 系统
+.DS_Store
+Thumbs.db
