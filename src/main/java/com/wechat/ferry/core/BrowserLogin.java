@@ -35,6 +35,20 @@ public final class BrowserLogin {
         }
 
         ChromeOptions options = new ChromeOptions();
+
+        // 指定 Chrome 二进制（如 Chrome for Testing 138，专供 MV2 插件使用）。
+        // 未配置则用系统默认 Chrome，保持向后兼容。
+        String binaryPath = cfg.str("defaults.driver.browserBinaryPath", "");
+        if (!binaryPath.isEmpty()) {
+            File binaryFile = new File(binaryPath);
+            if (!binaryFile.isFile()) {
+                throw new IllegalStateException("Chrome 二进制不存在：" + binaryPath +
+                    "。请在 sites.yml 的 defaults.driver.browserBinaryPath 中修正路径。");
+            }
+            options.setBinary(binaryFile);
+            StepContext.check("Chrome 二进制", binaryPath);
+        }
+
         List<String> args = cfg.list("defaults.driver.arguments");
         for (String arg : args) {
             options.addArguments(arg);
