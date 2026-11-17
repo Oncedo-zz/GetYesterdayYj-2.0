@@ -154,6 +154,13 @@ public class GetYesterdayYj {
         String driverPath = CFG.str("defaults.driver.chromeDriverPath", "");
         StepContext.check("  ChromeDriver", driverPath
             + (new File(driverPath).isFile() ? "  [存在]" : "  [!! 文件不存在 !!]"));
+        String binaryPath = CFG.str("defaults.driver.browserBinaryPath", "");
+        if (!binaryPath.isEmpty()) {
+            StepContext.check("  Chrome 二进制", binaryPath
+                + (new File(binaryPath).isFile() ? "  [存在]" : "  [!! 文件不存在 !!]"));
+        } else {
+            StepContext.check("  Chrome 二进制", "[系统默认] 未指定，将用系统 Chrome（MV2 插件可能加载失败）");
+        }
         StepContext.check("  扩展目录", CFG.str("defaults.driver.extensionPath", ""));
 
         System.out.println();
